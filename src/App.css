@@ -1,0 +1,165 @@
+.app {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F5DEB3 0%, #DEB887 50%, #D2B48C 100%);
+  font-family: 'Georgia', serif;
+  color: #8B4513;
+  position: relative;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.canvas-container canvas {
+  display: block;
+  cursor: grab;
+}
+
+.canvas-container canvas:active {
+  cursor: grabbing;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.info {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  color: #8B4513;
+  font-size: 16px;
+  text-shadow: 0 2px 4px rgba(139, 69, 19, 0.3);
+  background: rgba(245, 222, 179, 0.95);
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #CD853F;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(139, 69, 19, 0.2);
+  pointer-events: auto;
+}
+
+.info h2 {
+  margin-bottom: 10px;
+  color: #A0522D;
+  font-size: 18px;
+  text-align: center;
+}
+
+.info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.controls {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  color: #8B4513;
+  font-size: 13px;
+  text-shadow: 0 2px 4px rgba(139, 69, 19, 0.3);
+  background: rgba(245, 222, 179, 0.95);
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid #CD853F;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(139, 69, 19, 0.2);
+  pointer-events: auto;
+}
+
+.meditation {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  color: #8B4513;
+  font-size: 14px;
+  font-style: italic;
+  text-shadow: 0 2px 4px rgba(139, 69, 19, 0.3);
+  background: rgba(245, 222, 179, 0.95);
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid #CD853F;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(139, 69, 19, 0.2);
+  max-width: 300px;
+  pointer-events: auto;
+}
+
+.blessing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #DAA520;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0 0 20px rgba(218, 165, 32, 0.8);
+  opacity: 0;
+  animation: blessAppear 6s ease-in-out infinite;
+  pointer-events: none;
+  text-align: center;
+}
+
+@keyframes blessAppear {
+  0%, 85%, 100% { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  40%, 60% { 
+    opacity: 0.9; 
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .info, .controls, .meditation {
+    font-size: 12px;
+    padding: 12px;
+    margin: 15px;
+  }
+  
+  .info {
+    top: 15px;
+    left: 15px;
+  }
+  
+  .controls {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .meditation {
+    bottom: 15px;
+    left: 15px;
+    max-width: 250px;
+  }
+  
+  .blessing {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .meditation {
+    position: relative;
+    margin: 10px;
+    max-width: none;
+  }
+  
+  .controls {
+    font-size: 11px;
+  }
+}
