@@ -97,29 +97,49 @@
   pointer-events: auto;
 }
 
-.blessing {
+.floating-cross-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #DAA520;
-  font-size: 24px;
-  font-weight: bold;
-  text-shadow: 0 0 20px rgba(218, 165, 32, 0.8);
-  opacity: 0;
-  animation: blessAppear 6s ease-in-out infinite;
   pointer-events: none;
-  text-align: center;
+  z-index: 50;
+  opacity: 0;
+  animation: floatingCrossAppear 3s ease-in-out 2s forwards, floatingCrossPulse 4s ease-in-out 5s infinite;
 }
 
-@keyframes blessAppear {
-  0%, 85%, 100% { 
+.floating-cross {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 140, 0, 0.3);
+  border: 2px solid rgba(255, 215, 0, 0.8);
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+}
+
+.floating-cross canvas {
+  display: block;
+  border-radius: 6px;
+}
+
+@keyframes floatingCrossAppear {
+  0% { 
     opacity: 0; 
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.3) rotate(-180deg);
   }
-  40%, 60% { 
-    opacity: 0.9; 
+  100% { 
+    opacity: 0.95; 
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes floatingCrossPulse {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 140, 0, 0.3);
+  }
+  50% { 
     transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 140, 0, 0.5);
   }
 }
 
