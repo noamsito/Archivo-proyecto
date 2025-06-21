@@ -12,7 +12,7 @@ const codeFragments = [
     hoverClass: 'hover-pain'
   },
   {
-    code: 'const recuerdos = abuela.regalo.filter(item => item.permanece);',
+    code: 'const recuerdos = padre.regalo.filter(item => item.permanece);',
     meaning: 'Herencia que trasciende el tiempo',
     hoverClass: 'hover-nostalgia'
   },

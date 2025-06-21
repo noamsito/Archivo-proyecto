@@ -149,7 +149,12 @@ function App() {
             Todos tenemos objetos que trascienden su materialidad. 
             Comparte el tuyo y forma parte de este archivo colectivo de permanencias.
           </p>
-          <CollaborativeForm onSubmit={handleArchiveSubmission} />
+          <CollaborativeForm
+            onSubmit={(data) => {
+              handleArchiveSubmission(data);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
         </div>
       </section>
 
