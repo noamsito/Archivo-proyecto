@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
+import { useAudioManager } from './SoundManager';
 
 interface CollaborativeFormProps {
   onSubmit: (data: any) => void;
@@ -12,6 +13,7 @@ const CollaborativeForm: React.FC<CollaborativeFormProps> = ({ onSubmit }) => {
     significado: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const audioManager = useAudioManager();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,11 +41,11 @@ const CollaborativeForm: React.FC<CollaborativeFormProps> = ({ onSubmit }) => {
   if (submitted) {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 bg-yellow-400 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Send className="w-8 h-8 text-yellow-400" />
+        <div className="timeline-icon mx-auto mb-4">
+          <Send className="w-8 h-8" />
         </div>
-        <h3 className="text-2xl font-serif text-white mb-4">Archivo Registrado</h3>
-        <p className="text-gray-300">Tu objeto sagrado ahora forma parte de esta colección digital.</p>
+        <h3 className="text-2xl font-serif text-primary mb-4">Archivo Registrado</h3>
+        <p className="text-dark">Tu objeto sagrado ahora forma parte de esta colección digital.</p>
       </div>
     );
   }
@@ -51,7 +53,7 @@ const CollaborativeForm: React.FC<CollaborativeFormProps> = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
       <div>
-        <label htmlFor="objeto" className="block text-white font-serif mb-2">
+        <label htmlFor="objeto" className="block text-primary font-serif mb-2">
           ¿Cuál es tu objeto sagrado?
         </label>
         <input
@@ -61,13 +63,13 @@ const CollaborativeForm: React.FC<CollaborativeFormProps> = ({ onSubmit }) => {
           value={formData.objeto}
           onChange={handleChange}
           placeholder="Una cadena, un libro, una fotografía..."
-          className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg text-white placeholder-gray-500 focus:border-yellow-400 focus:outline-none transition-colors"
+          className="form-input w-full"
           required
         />
       </div>
 
       <div>
-        <label htmlFor="historia" className="block text-white font-serif mb-2">
+        <label htmlFor="historia" className="block text-primary font-serif mb-2">
           ¿Cuál es su historia?
         </label>
         <textarea
@@ -77,13 +79,13 @@ const CollaborativeForm: React.FC<CollaborativeFormProps> = ({ onSubmit }) => {
           onChange={handleChange}
           placeholder="Cuéntanos de dónde viene, quién te lo dio, qué representa..."
           rows={4}
-          className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg text-white placeholder-gray-500 focus:border-yellow-400 focus:outline-none transition-colors resize-none"
+          className="form-input w-full resize-none"
           required
         />
       </div>
 
       <div>
-        <label htmlFor="significado" className="block text-white font-serif mb-2">
+        <label htmlFor="significado" className="block text-primary font-serif mb-2">
           ¿Por qué persiste en tu vida?
         </label>
         <textarea
@@ -93,14 +95,15 @@ const CollaborativeForm: React.FC<CollaborativeFormProps> = ({ onSubmit }) => {
           onChange={handleChange}
           placeholder="Qué lo hace especial, por qué nunca lo has perdido..."
           rows={3}
-          className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg text-white placeholder-gray-500 focus:border-yellow-400 focus:outline-none transition-colors resize-none"
+          className="form-input w-full resize-none"
           required
         />
       </div>
 
       <button
         type="submit"
-        className="w-full bg-yellow-400 text-black py-3 px-6 rounded-lg font-semibold hover:bg-yellow-300 transition-colors duration-300 flex items-center justify-center space-x-2"
+        className="submit-button w-full flex items-center justify-center space-x-2"
+        onMouseEnter={() => audioManager.playAmbientTone()}
       >
         <Send className="w-5 h-5" />
         <span>Activar Archivo</span>

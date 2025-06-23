@@ -1,5 +1,6 @@
 import React from 'react';
 import { CloudRainWind, BookA, PersonStanding, Star, Sunrise } from 'lucide-react';
+import { useAudioManager } from './SoundManager';
 
 const timelineData = [
   {
@@ -35,21 +36,26 @@ const timelineData = [
 ];
 
 const Timeline: React.FC = () => {
+  const audioManager = useAudioManager();
+
   return (
     <div className="space-y-12">
       {timelineData.map((item, index) => (
         <div key={index} className="flex items-start space-x-6 group">
           <div className="flex-shrink-0">
-            <div className="w-12 h-12 bg-yellow-400 bg-opacity-20 rounded-full flex items-center justify-center group-hover:bg-opacity-40 transition-all duration-300">
-              <item.icon className="w-6 h-6 text-yellow-400" />
-            </div>
+              <div 
+                className="timeline-icon"
+                // onMouseEnter={() => audioManager.playTimelineSound()}
+              >
+                <item.icon className="w-6 h-6" />
+              </div>
           </div>
           <div className="flex-grow">
             <div className="flex items-center space-x-4 mb-2">
-              <span className="text-2xl font-serif text-yellow-400 font-bold">{item.year}</span>
-              <h3 className="text-xl font-serif text-white">{item.title}</h3>
+              <span className="text-2xl font-serif text-accent font-bold">{item.year}</span>
+              <h3 className="text-xl font-serif text-primary">{item.title}</h3>
             </div>
-            <p className="text-gray-300 leading-relaxed">{item.description}</p>
+            <p className="text-dark leading-relaxed">{item.description}</p>
           </div>
         </div>
       ))}

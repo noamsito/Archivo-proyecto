@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAudioManager } from './SoundManager';
 
 const codeFragments = [
   {
@@ -29,14 +30,20 @@ const codeFragments = [
 ];
 
 const CodeVital: React.FC = () => {
+  const audioManager = useAudioManager();
+
   return (
     <div className="space-y-8">
       {codeFragments.map((fragment, index) => (
-        <div key={index} className={`code-fragment bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-yellow-400 transition-all duration-300 ${fragment.hoverClass}`}>
-          <pre className="text-yellow-400 font-mono text-sm md:text-base overflow-x-auto">
+        <div 
+          key={index} 
+          className={`code-fragment p-6 rounded-lg transition-all duration-300 ${fragment.hoverClass}`}
+          onMouseEnter={() => audioManager.playCodeHoverSound()}
+        >
+          <pre className="text-accent font-mono text-sm md:text-base overflow-x-auto">
             <code>{fragment.code}</code>
           </pre>
-          <p className="text-gray-400 mt-3 text-sm italic">{fragment.meaning}</p>
+          <p className="text-secondary mt-3 text-sm italic">{fragment.meaning}</p>
         </div>
       ))}
     </div>

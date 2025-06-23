@@ -13,7 +13,7 @@ const FloatingCrucifix: React.FC = () => {
       >
         <defs>
           <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-        <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="rgba(0, 0, 0, 0.5)" />
+        <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="rgba(0, 0, 0, 0.5)" />
           </filter>
         </defs>
         <rect
